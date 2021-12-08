@@ -1,14 +1,14 @@
 <?php
 
-class tasksController extends Controller
+class commentsController extends Controller
 {
     function index()
     {
-        require(ROOT . 'Models/Task.php');
+        require(ROOT . 'Models/Comments.php');
 
-        $tasks = new Task();
+        $comments = new Comments();
 
-        $d['tasks'] = $tasks->showAllTasks();
+        $d['comments'] = $comments->showAllcomments();
         $this->set($d);
         $this->render("index");
     }
@@ -17,13 +17,13 @@ class tasksController extends Controller
     {
         if (isset($_POST["title"]))
         {
-            require(ROOT . 'Models/Task.php');
+            require(ROOT . 'Models/Comments.php');
 
-            $task= new Task();
+            $task= new Comments();
 
             if ($task->create($_POST["title"], $_POST["description"]))
             {
-                header("Location: " . WEBROOT . "tasks/index");
+                header("Location: " . WEBROOT . "comments/index");
             }
         }
 
@@ -32,8 +32,8 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        require(ROOT . 'Models/Task.php');
-        $task= new Task();
+        require(ROOT . 'Models/Comments.php');
+        $task= new Comments();
 
         $d["task"] = $task->showTask($id);
 
@@ -41,7 +41,7 @@ class tasksController extends Controller
         {
             if ($task->edit($id, $_POST["title"], $_POST["description"]))
             {
-                header("Location: " . WEBROOT . "tasks/index");
+                header("Location: " . WEBROOT . "comments/index");
             }
         }
         $this->set($d);
@@ -50,12 +50,12 @@ class tasksController extends Controller
 
     function delete($id)
     {
-        require(ROOT . 'Models/Task.php');
+        require(ROOT . 'Models/Comments.php');
 
-        $task = new Task();
+        $task = new Comments();
         if ($task->delete($id))
         {
-            header("Location: " . WEBROOT . "tasks/index");
+            header("Location: " . WEBROOT . "comments/index");
         }
     }
 
