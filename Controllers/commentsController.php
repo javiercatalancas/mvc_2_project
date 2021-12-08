@@ -4,9 +4,9 @@ class commentsController extends Controller
 {
     function index()
     {
-        require(ROOT . 'Models/Comments.php');
+        require(ROOT . 'Models/comment.php');
 
-        $comments = new Comments();
+        $comments = new comment();
 
         $d['comments'] = $comments->showAllcomments();
         $this->set($d);
@@ -17,11 +17,11 @@ class commentsController extends Controller
     {
         if (isset($_POST["title"]))
         {
-            require(ROOT . 'Models/Comments.php');
+            require(ROOT . 'Models/comment.php');
 
-            $task= new Comments();
+            $comment= new comment();
 
-            if ($task->create($_POST["title"], $_POST["description"]))
+            if ($comment->create($_POST["title"], $_POST["description"]))
             {
                 header("Location: " . WEBROOT . "comments/index");
             }
@@ -32,14 +32,14 @@ class commentsController extends Controller
 
     function edit($id)
     {
-        require(ROOT . 'Models/Comments.php');
-        $task= new Comments();
+        require(ROOT . 'Models/comment.php');
+        $comment= new comment();
 
-        $d["task"] = $task->showTask($id);
+        $d["comment"] = $comment->showcomment($id);
 
         if (isset($_POST["title"]))
         {
-            if ($task->edit($id, $_POST["title"], $_POST["description"]))
+            if ($comment->edit($id, $_POST["title"], $_POST["description"]))
             {
                 header("Location: " . WEBROOT . "comments/index");
             }
@@ -50,10 +50,10 @@ class commentsController extends Controller
 
     function delete($id)
     {
-        require(ROOT . 'Models/Comments.php');
+        require(ROOT . 'Models/comment.php');
 
-        $task = new Comments();
-        if ($task->delete($id))
+        $comment = new comment();
+        if ($comment->delete($id))
         {
             header("Location: " . WEBROOT . "comments/index");
         }
