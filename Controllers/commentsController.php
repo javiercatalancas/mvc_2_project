@@ -6,40 +6,57 @@ class commentsController extends Controller
     {
         require(ROOT . 'Models/comment.php');
 
-        $comments = new comment();
+        $comments = new Comment();
 
         $d['comments'] = $comments->showAllcomments();
         $this->set($d);
         $this->render("index");
     }
+/* 
+    function user()
+    {
+        require(ROOT . 'Models/comment.php');
+
+        $comments = new Comment();
+
+        $d['users'] = $comments->showAllusers();
+        $this->set($d);
+        $this->render("create");
+    } */
+
 
     function create()
     {
+        require (ROOT . 'Models/Users.php');
+
+        $users= new Users();
+        $d['users'] = $users->showAllusers();
+        $this->set($d);
+
+          
         if (isset($_POST["title"]))
         {
-            require(ROOT . 'Models/comment.php');
-
-            $comment= new comment();
-
-            if ($comment->create($_POST["title"], $_POST["description"]))
+            require(ROOT . 'Models/Comment.php');
+            
+            if ($comments->create($_POST["title"], $_POST["description"]))
             {
                 header("Location: " . WEBROOT . "comments/index");
             }
         }
-
-        $this->render("create");
+        
+        $this->render("create"); 
     }
 
     function edit($id)
     {
         require(ROOT . 'Models/comment.php');
-        $comment= new comment();
+        $comment= new Comment();
 
-        $d["comment"] = $comment->showcomment($id);
+        $d["comment"] = $comment->edit($id);
 
-        if (isset($_POST["title"]))
+        if (isset($_POST["body"]))
         {
-            if ($comment->edit($id, $_POST["title"], $_POST["description"]))
+            if ($comment->edit($id, $_POST["body"]))
             {
                 header("Location: " . WEBROOT . "comments/index");
             }
@@ -52,7 +69,7 @@ class commentsController extends Controller
     {
         require(ROOT . 'Models/comment.php');
 
-        $comment = new comment();
+        $comment = new Comment();
         if ($comment->delete($id))
         {
             header("Location: " . WEBROOT . "comments/index");
