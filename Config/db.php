@@ -10,7 +10,7 @@ class Database
     public static function getBdd() {
         try{
             if(is_null(self::$bdd)) {
-                self::$bdd = new PDO("mysql:host=localhost;dbname=proyectomvc", 'root', 'root');
+                self::$bdd = new PDO("mysql:host=localhost;dbname=mvc", 'root', 'root');
             }
             return self::$bdd;
         }
