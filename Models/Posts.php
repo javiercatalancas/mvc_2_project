@@ -16,6 +16,17 @@ public function showAllPosts(){
 }
 
 
+public function delete($id)
+{
+    $sql = 'DELETE FROM posts WHERE id = ?';
+    try{   
+        $req = Database::getBdd()->prepare($sql);
+        return $req->execute([$id]);
+    }
+    catch(PDOException $e){
+        print_r($e->getMessage());
+    }
+}
 
 
 }

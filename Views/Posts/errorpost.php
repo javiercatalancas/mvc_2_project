@@ -1,0 +1,6 @@
+<?php
+echo "<h1>NO SE PUEDE ELIMINAR PORQUE HAY COMENTARIOS EN EL POST</h1>"
+
+
+
+?>
