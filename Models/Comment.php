@@ -1,15 +1,18 @@
 <?php
 class Comment extends Model
 {
-    public function create($body)
+    public function create($body,$user_id, $post_id)
     {
-        $sql = "INSERT INTO comments (body, created_at, updated_at, user_id, post_id) VALUES (:body, :created_at, :updated_at, :user_id, :post_id)";
+        $sql = "INSERT INTO comments (body, user_id, post_id, created_at, updated_at) VALUES (:body, :user_id, :post_id, :created_at, :updated_at)";
         try{
             $req = Database::getBdd()->prepare($sql);
             return $req->execute([
                 'body' => $body,
+                'user_id' =>$user_id,
+                'post_id' =>$post_id,
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
+
             ]);
         }
         catch(PDOException $e){
@@ -17,7 +20,7 @@ class Comment extends Model
         }
     }
 
-    public function showcomment($id)
+    public function showComment($id)
     {
         $sql = "SELECT * FROM comments WHERE id =" . $id;
         try{
@@ -59,7 +62,7 @@ class Comment extends Model
     }
 
 
-    public function edit($id)
+    public function edit($id,$body)
     {
         $sql = "UPDATE comments SET body = :body , updated_at = :updated_at WHERE id = :id";
         try{

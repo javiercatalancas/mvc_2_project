@@ -12,18 +12,6 @@ class commentsController extends Controller
         $this->set($d);
         $this->render("index");
     }
-/* 
-    function user()
-    {
-        require(ROOT . 'Models/comment.php');
-
-        $comments = new Comment();
-
-        $d['users'] = $comments->showAllusers();
-        $this->set($d);
-        $this->render("create");
-    } */
-
 
     function create()
     {
@@ -33,17 +21,24 @@ class commentsController extends Controller
         $d['users'] = $users->showAllusers();
         $this->set($d);
 
-          
-        if (isset($_POST["title"]))
+        require (ROOT . 'Models/Posts.php');
+
+        $posts= new Posts();
+        $d['posts'] = $posts->showAllPosts();
+        $this->set($d);
+        
+
+        if (isset($_POST["body"]))
         {
             require(ROOT . 'Models/Comment.php');
+            $comments = new Comment();
             
-            if ($comments->create($_POST["title"], $_POST["description"]))
+            if ($comments->create($_POST["body"], $_POST['users'], $_POST['posts']))
             {
                 header("Location: " . WEBROOT . "comments/index");
             }
         }
-        
+       
         $this->render("create"); 
     }
 
@@ -52,7 +47,7 @@ class commentsController extends Controller
         require(ROOT . 'Models/comment.php');
         $comment= new Comment();
 
-        $d["comment"] = $comment->edit($id);
+        $d["comment"] = $comment->showComment($id);;
 
         if (isset($_POST["body"]))
         {
