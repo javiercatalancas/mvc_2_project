@@ -1,13 +1,10 @@
-<h1>Edit comment</h1>
+<h1>Editar Usuario</h1>
 <form method='post' action='#'>
-   <!--  <div class="form-group">
-        <label for="title">Editar</label>
-        <input type="text" class="form-control" id="title" placeholder="Enter a title" name="title" value ="<?php if (isset($comment["body"]));?>">
-    </div> -->
-
     <div class="form-group">
-        <label for="description">Comentario</label>
-        <input type="text" class="form-control" id="body" placeholder="Enter a description" name="description" value ="<?php if (isset($comment["body"]));?>">
+        <label for="description">Editar Nombre Usuario</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter a user" name="name" value ="<?php if (isset($users["name"])) echo $users['name'];?>">
+        <label for="description">Editar Email</label>
+        <input type="text" class="form-control" id="email" placeholder="Enter a email" name="email"value ="<?php if (isset($users["email"])) echo $users['email'];?>">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

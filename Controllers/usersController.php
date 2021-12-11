@@ -8,25 +8,18 @@ class usersController extends Controller {
         $users = new Users();
         $d['users'] = $users->showAllusers();
         $this->set($d);
-        // FALTA LA VISTA
         $this->render("index");
 
     }
 
     function create(){
 
-        require (ROOT . 'Models/Users.php');
-            $users= new Users();
-            $d['users'] = $users->showAllusers();
-            $this->set($d);
-
         if (isset($_POST["name"]))
         {
             require(ROOT . 'Models/Users.php');
+            $users = new Users;
 
-            
-
-            if ($users->create($_POST["name"], $_POST["email"]))
+            if ($users->create($_POST["name"], $_POST["email"], $_POST["password" ]))
             {
                 header("Location: " . WEBROOT . "users/index");
             }
@@ -34,6 +27,41 @@ class usersController extends Controller {
         
         $this->render("create");
 
+    }
+
+    function edit($id)
+    {
+        require(ROOT . 'Models/users.php');
+        $users= new Users();
+
+        $d["users"] = $users->showUser($id);
+
+        if (isset($_POST["name"]))
+        {
+            if ($users->edit($_POST["name"],$_POST['email'], $id))
+            {
+                header("Location: " . WEBROOT . "users/index");
+            }
+        }
+        $this->set($d);
+        $this->render("edit");
+    }
+
+    function delete($id)
+    {
+        require(ROOT . 'Models/Users.php');
+
+        $users = new Users();
+        if ($users->delete($id))
+        {
+            header("Location: " . WEBROOT . "users/index");
+        }
+    }
+
+    function error($m){
+        $d["error"] = $m;
+        $this->set($d);
+        $this->render("error");
     }
 
     

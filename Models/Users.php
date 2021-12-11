@@ -2,17 +2,17 @@
 
 class Users extends Model {
 
-    public function create($name, $email, $password, $remember_token){
-        $sql = "INSERT INTO users (id, name, email, password, remember_token,created_at, updated_at) VALUES(:id, :name, :email, :password, :remember_token, :created_at, :updated_at)";
+    public function create($name, $email, $password)
+    {
+        $sql = "INSERT INTO users (name, email, password,  created_at, updated_at) VALUES(:name, :email, :password, :created_at, :updated_at)";
         try{
             $req = Database::getBdd()->prepare($sql);
             return $req->execute([
                 'name' => $name,
                 'email' => $email,
-                'password' => $password,
-                'remember_token' => $remember_token,
+                'password' => md5($password),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
         catch(PDOException $e){
@@ -49,14 +49,14 @@ class Users extends Model {
 
 
 
-    public function edit($name, $password, $id){
-        $sql="UPDATE users SET name = :name, password = :password, updated_at = :updated_at WHERE id=:id";
+    public function edit($name, $email, $id){
+        $sql="UPDATE users SET name = :name, email = :email, updated_at = :updated_at WHERE id = :id";
         try{
             $req = Database::getBdd()->prepare($sql);
             return $req->execute([
                 'id' => $id,
                 'name' => $name,
-                'password' => $password,
+                'email' => $email,
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
         }
@@ -76,7 +76,6 @@ class Users extends Model {
             print_r($e->getMessage());
         }
     }
-
 
 }
 

@@ -18,7 +18,7 @@
             echo "<td>" . $user['name'] . "</td>";
             echo "<td>" . $user['email'] . "</td>";
            
-            echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/mvc_2_project/comments/edit/" . $user["id"] . "' ><span class='glyphicon glyphicon-edit'></span> Editar</a> <a href='/mvc_2_project/comments/delete/" . $user["id"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Borrar</a></td>";
+            echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/mvc_2_project/users/edit/" . $user["id"] . "' ><span class='glyphicon glyphicon-edit'></span> Editar</a> <a href='/mvc_2_project/users/delete/" . $user["id"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Borrar</a></td>";
             echo "</tr>";
         }
         ?>

@@ -1,19 +1,6 @@
 <h1>Crear Usuario</h1>
 <form method='post' action='#'>
-    <div class="form-group">
-        <label for="title">Seleccionar Usuario</label>
-        <select class="form-select" aria-label="Default select example">
-        <option selected>Usuarios</option>
-
-        <?php
-// ESTO NO TIENE SENTIDO AQUÍ
-        foreach($users as $user){
-            echo "<option value=".$user['id'].">".$user['email']."</option>";
-        }
-        ?>
-        </select>
-    </div>
-
+   
     <div class="form-group">
         <label for="description">Nombre de Usuario</label>
         <input type="text" class="form-control" id="name" placeholder="Enter a user" name="name">

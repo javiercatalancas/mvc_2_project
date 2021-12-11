@@ -47,7 +47,7 @@ class commentsController extends Controller
         require(ROOT . 'Models/comment.php');
         $comment= new Comment();
 
-        $d["comment"] = $comment->showComment($id);;
+        $d["comment"] = $comment->showComment($id);
 
         if (isset($_POST["body"]))
         {
