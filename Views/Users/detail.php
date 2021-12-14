@@ -1,14 +1,19 @@
 <h1>Vista Detalle</h1>
-<p>Datos del Usuario</p>
+<div class="card" style="width: 20rem; margin:auto ">
+  <div class="card-body">
+    <h5 class="card-title">Datos del Usuario</h5>
+
 <?php 
-echo " Nombre de usuario: ".$detalle["name"];
+echo "<b>Nombre de usuario:</b> ".$detalle["name"];
 echo "<br>";
-echo "Id de usuario: ".$detalle["id"];
+echo "<b>Id de usuario: </b>".$detalle["id"];
 echo "<br>";
-echo "Email: ".$detalle["email"];
+echo "<b>Email:</b> ".$detalle["email"];
 echo "<br>";
-echo "Password :".$detalle["password"];
+echo "<b>Password :</b>".$detalle["password"];
 echo "<br>";
-echo "Token: ".$detalle["remember_token"];
+echo "<b>Token: </b>".$detalle["remember_token"];
 echo "<br>";
 ?>
+ </div>
+</div>

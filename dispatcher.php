@@ -14,6 +14,7 @@ class Dispatcher
             'comments'=>['index','create','edit','delete','error', 'detail'],
             'users'=>['index','create','edit','delete','error', 'detail'], 
             'posts'=>['index','delete','error', 'detail'],
+            'menu'=>['index', 'error']
             );
         
         if (array_key_exists($this->request->controller, $controllers)) {

@@ -1,13 +1,19 @@
 <h1>Vista Detalle</h1>
-<p>Detalle de los Post</p>
+<div class="card" style="width: 20rem; margin:auto ">
+  <div class="card-body">
+    <h5 class="card-title">Detalle de los Post</h5>
 <?php 
-echo "Título: ".$detalle["title"];
+echo "<b>Título: </b>".$detalle["title"];
 echo "<br>";
-echo "Id del post: ".$detalle["id"];
+echo "<b>Id del post: </b>".$detalle["id"];
 echo "<br>";
-echo "Status: ".$detalle["status"];
+echo "<b>Status: </b>".$detalle["status"];
 echo "<br>";
-echo "ID de usuario :".$detalle["user_id"];
+echo "<b>ID de usuario: </b>".$detalle["user_id"];
 echo "<br>";
 
 ?>
+    </div>
+</div>
+
+
