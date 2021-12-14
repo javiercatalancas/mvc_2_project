@@ -11,9 +11,9 @@ class Dispatcher
         Router::parse($this->request->url, $this->request);
 
         $controllers= array(
-            'comments'=>['index','create','edit','delete','error'],
-            'users'=>['index','create','edit','delete','error'], 
-            'posts'=>['index','delete','error'],
+            'comments'=>['index','create','edit','delete','error', 'detail'],
+            'users'=>['index','create','edit','delete','error', 'detail'], 
+            'posts'=>['index','delete','error', 'detail'],
             );
         
         if (array_key_exists($this->request->controller, $controllers)) {

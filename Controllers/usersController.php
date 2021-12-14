@@ -28,6 +28,16 @@ class usersController extends Controller {
         $this->render("create");
 
     }
+    
+    function detail($id)
+    {
+        require(ROOT . 'Models/users.php');
+
+        $detalle = new Users();
+        $d['detalle'] = $detalle->showUser($id);
+        $this->set($d);
+        $this->render("detail");
+    }
 
     function edit($id)
     {

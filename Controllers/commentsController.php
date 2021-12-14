@@ -13,6 +13,17 @@ class commentsController extends Controller
         $this->render("index");
     }
 
+
+    function detail($id)
+    {
+        require(ROOT . 'Models/comment.php');
+
+        $detalle = new Comment();
+        $d['detalle'] = $detalle->showComment($id);
+        $this->set($d);
+        $this->render("detail");
+    }
+
     function create()
     {
         require (ROOT . 'Models/Users.php');

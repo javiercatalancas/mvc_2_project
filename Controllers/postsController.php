@@ -32,6 +32,18 @@ class postsController extends Controller{
         $this->render("error");
     }
 
+
+
+    function detail($id)
+    {
+        require(ROOT . 'Models/posts.php');
+
+        $detalle = new Posts();
+        $d['detalle'] = $detalle->showPost($id);
+        $this->set($d);
+        $this->render("detail");
+    }
+
 }
 
 
